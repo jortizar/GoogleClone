@@ -1,0 +1,17 @@
+.header-right-aligned {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 5px;
+    padding: 5px;
+}
+
+.header-element {
+    padding: 5px;
+}
+
+.rounded {
+    border-radius: 25px;
+    border-style: solid;
+    border-color: red;
+}
