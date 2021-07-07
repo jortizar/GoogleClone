@@ -4,6 +4,7 @@ import './ShortcutsBox.css'
 
 const shortcutDataList = ["(280) Youtube", "Sign In", "WhatsApp", "Projects", "Google Drive", "Inicio"];
 
+// Function component
 function ShortcutsBox() {
     return(
         <div className="container">

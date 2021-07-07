@@ -41,8 +41,6 @@ class Shortcut extends React.Component {
                 </div>
                 <div>
                     <p>{this.props.title}</p>
-                    <p>{this.state.url}</p>
-                    <img src={this.state.imageUrl} width={50} height={50} />
                 </div>
             </div>
         );
