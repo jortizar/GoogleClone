@@ -38,6 +38,28 @@ var result_content = [
 
 
 export default class Search extends React.Component {
+    // This is the class constructor where we defined the component's state
+    constructor(){
+        super();
+        // This is the component's state
+        this.state = {
+            // apiResult will eventually contain the result from the call we make with fetch
+            apiResult: {}
+        }
+    }
+
+    // This is a method from React.Component that runs when the component is mounted
+    componentDidMount() {
+        // Here we make the API call
+        fetch("https://swapi.dev/api/people/10")
+        .then(result => result.json())
+        .then(result => {
+            console.log('This is the API response: ', result);
+            this.setState({apiResult: result});
+        })
+    }
+
+
     render() {
         return(
             <div className='main_container'>
@@ -56,6 +78,8 @@ export default class Search extends React.Component {
                 </div>
                 {/* ---------------------------------------------------------------------- */}
                 <div className='body_left'>
+                    <p>Name: {this.state.apiResult.name}</p>
+                    <p>Gender: {this.state.apiResult.gender}</p>
                     <RelatedQuestions/>
                     {result_content.map((element) => (
                         <Result data= {element}/>
