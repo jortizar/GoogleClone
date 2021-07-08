@@ -57,9 +57,7 @@ nav{
 }
 
 .body_left{
-    border: black solid;
-
-    opacity: 100%;
+    margin: 5%;
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
