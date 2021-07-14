@@ -44,23 +44,38 @@ export default class Search extends React.Component {
         // This is the component's state
         this.state = {
             // apiResult will eventually contain the result from the call we make with fetch
-            apiResult: {}
+            apiResult: {},
+            count: 0
         }
     }
 
-    // This is a method from React.Component that runs when the component is mounted
-    componentDidMount() {
-        // Here we make the API call
+    // // This is a method from React.Component that runs when the component is mounted
+    // componentDidMount() {
+    //     // Here we make the API call
+    //     fetch("https://swapi.dev/api/people/10")
+    //     .then(result => result.json())
+    //     .then(result => {
+    //         console.log('This is the API response: ', result);
+    //         this.setState({apiResult: result});
+    //     })
+    // }
+
+
+    callAPI() {
         fetch("https://swapi.dev/api/people/10")
-        .then(result => result.json())
-        .then(result => {
-            console.log('This is the API response: ', result);
-            this.setState({apiResult: result});
-        })
+            .then(result => result.json())
+            .then(result => {
+                console.log('This is the API response: ', result);
+                this.setState({apiResult: result});
+            })
     }
 
+    addOne(){
+        this.setState({count: this.state.count + 1});
+    }
 
     render() {
+        this.callAPI();
         return(
             <div className='main_container'>
                 <div className='nav_container'>
@@ -80,6 +95,11 @@ export default class Search extends React.Component {
                 <div className='body_left'>
                     <p>Name: {this.state.apiResult.name}</p>
                     <p>Gender: {this.state.apiResult.gender}</p>
+                    <div>
+                        <span>Count:</span>
+                        <span>{this.state.count}</span>
+                    </div>
+                    <button onClick={() => this.addOne()}>Add 1</button>
                     <RelatedQuestions/>
                     {result_content.map((element) => (
                         <Result data= {element}/>
