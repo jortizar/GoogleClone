@@ -1,28 +1,23 @@
-import { Divider } from '@material-ui/core';
 import React from 'react';
-
+import './Result.css'
 
 class Result extends React.Component{
     render(){
-
+        const results = this.props.data
         return(
             <div className = 'result'>
-                <div>
-                    <a>
-                        {this.props.data.a}
-                    </a>
-                </div>
-                <div>
-                    <h1>
-                    {this.props.data.h1}
-                    </h1>
-                </div>
-                <div>
-                    <p>
-                    {this.props.data.p}
-                    </p>
-                </div>
-
+                {results.map((element,i) => {
+                   return<div className='result' key={i}>
+                       <a href={element.url}>{element.url}</a>
+                       <h1>{element.title}</h1>
+                       <p>
+                           {element.body}
+                       </p>
+                        <p>
+                            {element.visitCount}
+                        </p>
+                   </div> 
+                })}
             </div>
         )
     }

@@ -10,13 +10,15 @@ body{
     grid-template-rows: 15% 85%; 
 }
 .nav_container{
-    border: black solid;
-    background-color: yellow;
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 0;
     grid-row-start: 1;
     display: grid;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
 }
 nav{
     display: grid;
@@ -33,27 +35,22 @@ nav{
 .logo{
     grid-column-start: 1;
     grid-column-end: 2;
-    border: black solid;
-    background-color: orange;
 
 }
 .Searchbar{
+    margin-left: 1em;
     grid-column-start: 2;
     grid-column-end: 3;
-    border: black solid;
-    background-color: green;
 }
 .Space{
     grid-column-start: 3;
     grid-column-end: 4;
-    border: black solid;
-    background-color: white;
 }
 .Right_icons{
     grid-column-start: 4;
     grid-column-end: 5;
-    border: black solid;
-    background-color: cyan;
+    display: flex;
+    justify-content: space-around;
 }
 
 .body_left{
@@ -65,11 +62,48 @@ nav{
 }
 
 .body_right{
-    border: black solid;
-    background-color: blue;
+
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-start: 2;
 
+}
+.bar{
+    margin:0 auto;
+    width:575px;
+    border-radius:30px;
+    border:1px solid #dcdcdc;
+  }
+  .bar:hover{
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+  }
+  .bar:focus-within{
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+    outline:none;
+  }
+  .searchbar{
+    height:45px;
+    border:none;
+    width:500px;
+    font-size:16px;
+    outline: none;
+    
+  }
+  .voice{
+    height:20px;
+    position:relative;
+    top:5px;
+    left:10px;
+  }
+.links{
+    margin-left: 13em;
+    display: flex;
+
+}
+
+.links .link_item{
+    margin: 0 2em 0 0;
+    display: flex;
+    align-items: baseline;
 }

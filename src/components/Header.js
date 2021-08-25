@@ -1,5 +1,6 @@
 import AppsIcon from '@material-ui/icons/Apps';
 import './Header.css';
+import { CgProfile } from "react-icons/cg";
 
 
 function Header() {
@@ -13,7 +14,7 @@ function Header() {
             </div>
             <div className="header-element"><AppsIcon /></div>
             <div className="header-element">
-                <img className="rounded" alt="Avatar" src="https://lh3.googleusercontent.com/ogw/ADea4I7Xw8SfnSzfnlOSmD2i6We_RfLwUkBnQFH4SAIy=s32-c-mo" />
+                <CgProfile size='2em'/>
             </div>
         </div>
     );

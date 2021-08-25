@@ -2,119 +2,131 @@ import React from 'react';
 import './Search.css';
 import Result from './Result'
 import RelatedQuestions from './RelatedQuestions'
-var result_content = [
-    {
-        'a' : 'https://www.cdc.gov › autism › facts',
-        'h1' : 'What is Autism Spectrum Disorder?',
-        'p' : 'Autism Spectrum Disorders (ASDs) are a group of developmental disabilities that can cause significant social, communication and behavioral challenges.'
+import SideResults from './SideResults'
+import logo from '../assets/img/logo.png'
+import SearchBox from './SearchBox'
+import { VscSettingsGear } from "react-icons/vsc";
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { BsImage } from "react-icons/bs";
+import { RiVideoLine } from "react-icons/ri";
+import { AiOutlineBook } from "react-icons/ai";
+import { SiGooglemaps } from "react-icons/si";
+import { FiMoreVertical } from "react-icons/fi";
 
-    },
-    {
-        'a' : 'https://www.stanfordchildrens.org › topic',
-        'h1' : 'Autism Spectrum Disorder - Stanford Children\'s Health',
-        'p' : 'El trastorno del espectro autista (ASD, por sus siglas en inglés) es un problema que afecta el sistema nervioso de los niños durante sus primeros 3 años de vida​ ...'
-
-    },
-    {
-        'a' : 'https://www.cdc.gov › autism › facts',
-        'h1' : 'What is Autism Spectrum Disorder?',
-        'p' : 'Autism Spectrum Disorders (ASDs) are a group of developmental disabilities that can cause significant social, communication and behavioral challenges.'
-
-    },
-    {
-        'a' : 'https://www.cdc.gov › autism › facts',
-        'h1' : 'What is Autism Spectrum Disorder?',
-        'p' : 'Autism Spectrum Disorders (ASDs) are a group of developmental disabilities that can cause significant social, communication and behavioral challenges.'
-
-    },
-    {
-        'a' : 'https://www.cdc.gov › autism › facts',
-        'h1' : 'What is Autism Spectrum Disorder?',
-        'p' : 'Autism Spectrum Disorders (ASDs) are a group of developmental disabilities that can cause significant social, communication and behavioral challenges.'
-
-    }
-    
-]
 
 
 export default class Search extends React.Component {
-    // This is the class constructor where we defined the component's state
-    constructor(){
-        super();
-        // This is the component's state
+
+
+    constructor(props){
+        super(props)
         this.state = {
-            // apiResult will eventually contain the result from the call we make with fetch
-            apiResult: {},
-            count: 0
+            error: null,
+            isLoaded: false,
+            data: []
         }
     }
-
-    // // This is a method from React.Component that runs when the component is mounted
-    // componentDidMount() {
-    //     // Here we make the API call
-    //     fetch("https://swapi.dev/api/people/10")
-    //     .then(result => result.json())
-    //     .then(result => {
-    //         console.log('This is the API response: ', result);
-    //         this.setState({apiResult: result});
-    //     })
-    // }
-
-
-    callAPI() {
-        fetch("https://swapi.dev/api/people/10")
+    componentDidMount(){
+        fetch('https://ushop-gcp.uc.r.appspot.com/api/search/react')
             .then(result => result.json())
-            .then(result => {
-                console.log('This is the API response: ', result);
-                this.setState({apiResult: result});
-            })
+                .then(result => {
+                    this.setState({
+                        isLoaded:true,
+                        data: result
+                    })
+                },
+                (error) =>{
+                    this.setState({
+                        isLoaded: true,
+                        error : error
+                    })
+                })
     }
 
-    addOne(){
-        this.setState({count: this.state.count + 1});
-    }
+    render(){
+        const {error,isLoaded,data} = this.state;
+        if(error){
+            return <div>Error: {error.message}</div>
+        }
+        else if(!isLoaded){
+            return <div>Loading...</div>
+        }
+        else{
+            return(
+                <div className='main_container'>
+                    <div className='nav_container'>
+                        <nav>
+                            <div className='nav_items'>
+                                <div className='logo'>
+                                    <img src={logo} alt="Google logo"  height="60em"/>
+                                </div>
 
-    render() {
-        this.callAPI();
-        return(
-            <div className='main_container'>
-                <div className='nav_container'>
-                    <nav>
-                        <div className='nav_items'>
-                            <div className='logo'>Logo</div>
-                            <div className='Searchbar'>Searchbar</div>
-                            <div className= 'Space'>Space</div>
-                            <div className= 'Right_icons'>right icons</div>
-                        </div>
-                        <div className='links'>
-                            links
-                        </div>
-                    </nav>
-                </div>
-                {/* ---------------------------------------------------------------------- */}
-                <div className='body_left'>
-                    <p>Name: {this.state.apiResult.name}</p>
-                    <p>Gender: {this.state.apiResult.gender}</p>
-                    <div>
-                        <span>Count:</span>
-                        <span>{this.state.count}</span>
+                                <div className='Searchbar'>
+                                    <SearchBox/>
+                                </div>
+                                <div className= 'Space'></div>
+                                <div className= 'Right_icons'>
+                                    <VscSettingsGear size='1.5em'/>
+                                    <BsFillGrid3X3GapFill size='1.5em' />
+                                    <CgProfile size='1.5em'/>
+                                </div>
+                            </div>
+                            <div className='links'>
+                                <div className='link_item'>
+                                    <BiSearchAlt2/>
+                                    <p>
+                                        All
+                                    </p>
+                                </div>
+                                <div className='link_item'>
+                                    <BsImage/>
+                                    <p>
+                                        Images
+                                    </p>
+                                </div>
+                                <div className='link_item'>
+                                    <RiVideoLine/>
+                                    <p>
+                                        Videos
+                                    </p>
+                                </div>
+                                <div className='link_item'>
+                                    <AiOutlineBook/>
+                                    <p>
+                                        Books
+                                    </p>
+                                </div>
+                                <div className='link_item'>
+                                    <SiGooglemaps/>
+                                    <p>
+                                       Maps
+                                    </p>
+                                </div>
+                                <div className='link_item'>
+                                    <FiMoreVertical/>
+                                    <p>
+                                        More
+                                    </p>
+                                </div>
+                            </div>
+                        </nav>
                     </div>
-                    <button onClick={() => this.addOne()}>Add 1</button>
-                    <RelatedQuestions/>
-                    {result_content.map((element) => (
-                        <Result data= {element}/>
-                    )
-                        
-                    )}
+                    {/* ---------------------------------------------------------------------- */}
+                    <div className='body_left'>
+                        <RelatedQuestions data = {data.commonQuestions}/>
+                        <Result data = {data.results}/>
+                    </div>
+                    {/* ---------------------------------------------------------------------- */}
+                    <div className='body_right'>
+                        <SideResults data = {data.results}/>
+                    </div>
+                    {/* ---------------------------------------------------------------------- */}
+                    
                 </div>
-                {/* ---------------------------------------------------------------------- */}
-                <div className='body_right'>
-                    right
-                </div>
-                {/* ---------------------------------------------------------------------- */}
-                
-            </div>
-
-        )
+    
+            )
+        }
     }
 }

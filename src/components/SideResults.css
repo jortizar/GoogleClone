@@ -1,0 +1,29 @@
+.images_container{
+    width: 100%;
+    display: grid;
+    grid-template-areas: 
+    'left right'
+    'left right2'
+    'botton botton';
+}
+
+.images_container .image img{
+    width: 11em;
+}
+
+.subtitle{
+    display: flex;
+    align-items: baseline;
+}
+
+.side_results{
+    width: 50%;
+    margin: 3em;
+    border-radius: 0.5em;
+    border-color: grey;
+    border-style: solid;
+    border-width: 0.1em;
+}
+.result_body{
+    margin: 3em;
+}
